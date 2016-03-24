@@ -21,11 +21,14 @@ rm(list = ls())
 cat("\014")
 
 ## Assumes we have $HOME/stochasticresearch/energy-r :(
-file.path(path.expand("~"), "stochasticresearch", "energy-r")
+setwd(file.path(path.expand("~"), "stochasticresearch", "energy-r"))
 
 ## unload any existing loaded energy packages
-#detach("package:energy", unload=TRUE)
-library(energy, lib.loc="./install")  ## load our personal energy library, where we
+if(any( grepl("energy", (.packages())) )) {
+  detach("package:energy", unload=TRUE)
+}
+
+library(energy, lib.loc="../install")  ## load our personal energy library, where we
 ## made small print-outs to understand better what was
 ## going on with some of the code
 library(utils)
