@@ -7,19 +7,13 @@ rm -rf install
 mkdir install
 
 # Remove Old versions
-rm copula_0.999-14.tar.gz
-R CMD REMOVE --library=install copula
+rm energy_1.6.2.tar.gz
+R CMD REMOVE --library=install energy
 
 # build new version
-R CMD build --no-build-vignettes --no-manual copula
+R CMD build --no-build-vignettes --no-manual energy
 
 # install in our directory
-R CMD INSTALL --library=install copula_0.999-14.tar.gz
-
-## Do some auxiliary stuff that I need for testing purposes
-cd copula/src
-R CMD SHLIB logseries.c
-rm logseries.o
-mv logseries.so ../../install/
+R CMD INSTALL --library=install energy_1.6.2.tar.gz 
 
 popd
