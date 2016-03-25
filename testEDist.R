@@ -58,3 +58,18 @@ write.table(u, file = "testfiles/test1_input1.csv", sep = ",",
 write.table(v, file = "testfiles/test1_input2.csv", sep = ",",
             row.names = FALSE, col.names = FALSE)
 p <- eqdist.etest(X, c(1000,1000),R=200)
+print(p)
+
+## generate some files for testing the MATLAB port
+gu5 <- gumbelCopula(2, dim = 5)
+u <- rCopula(1000, gu5)
+cl5 <- claytonCopula(8, dim = 5)
+v <- rCopula(1000, cl5)
+X <- rbind(u,v)
+
+write.table(u, file = "testfiles/test2_input1.csv", sep = ",",
+            row.names = FALSE, col.names = FALSE)
+write.table(v, file = "testfiles/test2_input2.csv", sep = ",",
+            row.names = FALSE, col.names = FALSE)
+p <- eqdist.etest(X, c(1000,1000),R=200)
+print(p)
