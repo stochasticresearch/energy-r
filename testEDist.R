@@ -53,9 +53,9 @@ cl3 <- claytonCopula(2, dim = 3)
 v <- rCopula(1000, cl3)
 X <- rbind(u,v)
 
-write.table(u, file = "testfiles/test1_input1.csv", sep = ",",
+write.table(u, file = "testfiles/eqdisttest1_input1.csv", sep = ",",
             row.names = FALSE, col.names = FALSE)
-write.table(v, file = "testfiles/test1_input2.csv", sep = ",",
+write.table(v, file = "testfiles/eqdisttest1_input2.csv", sep = ",",
             row.names = FALSE, col.names = FALSE)
 p <- eqdist.etest(X, c(1000,1000),R=200)
 print(p)
@@ -67,9 +67,9 @@ cl5 <- claytonCopula(8, dim = 5)
 v <- rCopula(1000, cl5)
 X <- rbind(u,v)
 
-write.table(u, file = "testfiles/test2_input1.csv", sep = ",",
+write.table(u, file = "testfiles/eqdisttest2_input1.csv", sep = ",",
             row.names = FALSE, col.names = FALSE)
-write.table(v, file = "testfiles/test2_input2.csv", sep = ",",
+write.table(v, file = "testfiles/eqdisttest2_input2.csv", sep = ",",
             row.names = FALSE, col.names = FALSE)
 p <- eqdist.etest(X, c(1000,1000),R=200)
 print(p)
