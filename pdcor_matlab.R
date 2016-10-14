@@ -31,9 +31,9 @@ if(strcmp(.Platform$OS.type, "unix")) {
 }
 
 # setup input files
-inputX <- file.path(tmpDir, "x.csv")
-inputY <- file.path(tmpDir, "y.csv")
-inputZ <- file.path(tmpDir, "z.csv")
+inputX <- file.path(tmpDir, "x_pdcor.csv")
+inputY <- file.path(tmpDir, "y_pdcor.csv")
+inputZ <- file.path(tmpDir, "z_pdcor.csv")
 
 # read the data
 dataX <- read.table(inputX, header = FALSE, sep = ",")
