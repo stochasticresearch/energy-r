@@ -14,6 +14,7 @@
 #*
 #* You should have received a copy of the GNU General Public License
 #* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#*
 #**************************************************************************
 
 ## A script which calls the pdcor functionality of R through the use of CSV
@@ -34,18 +35,20 @@ if(strcmp(.Platform$OS.type, "unix")) {
 inputX <- file.path(tmpDir, "x_pdcor.csv")
 inputY <- file.path(tmpDir, "y_pdcor.csv")
 inputZ <- file.path(tmpDir, "z_pdcor.csv")
+inputR <- file.path(tmpDir, "pdcorr_replicates.csv")
 
 # read the data
 dataX <- read.table(inputX, header = FALSE, sep = ",")
 dataY <- read.table(inputY, header = FALSE, sep = ",")
 dataZ <- read.table(inputZ, header = FALSE, sep = ",")
+replicates <- read.table(inputR, header = FALSE, sep = ",")
 
 # call the R function
-val <- pdcor(dataX, dataY, dataZ)
+val <- pdcor.test(dataX, dataY, dataZ, R=replicates[1,1])
 
 # return the pdcorr value, which is read directly as a system output by Matlab
-vval <- unname(val)
+output <- c(val$estimate, val$p.value)
 
 # write the output to a file, for matlab to read
 outFile = file.path(tmpDir, "pdcor_matlab_output.csv")
-write.table(vval, file=outFile, sep = ",", col.names = FALSE, row.names = FALSE, qmethod = "double")
+write.table(output, file=outFile, sep = ",", col.names = FALSE, row.names = FALSE, qmethod = "double")
